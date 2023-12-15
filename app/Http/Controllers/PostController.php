@@ -21,18 +21,19 @@ class PostController extends Controller
     public function create(Category $category)
     {
         return view('posts.create')->with(['categories' => $category->get()]);
+        $category->posts()->get();
     }
     
     public function store(Post $post, PostRequest $request)
     {
         $input = $request['post'];
         $post->fill($input)->save();
-        return redirect('/posts/' .$post->id);
+        return redirect('/posts/' . $post->id);
     }
     
     public function edit(Post $post)
     {
-        return view('posts/edit')->with(['post' => $post]);
+        return view('posts.edit')->with(['post' => $post]);
     }
     
     public function update(PostRequest $request , Post $post)
