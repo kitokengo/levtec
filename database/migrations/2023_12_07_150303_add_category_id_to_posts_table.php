@@ -13,7 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreignId('category_id')->constrained();
+            //
+        });
     }
 
     /**
@@ -23,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::table('posts', function (Blueprint $table) {
+            //
+        });
     }
 };
